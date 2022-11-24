@@ -59,7 +59,12 @@ if($_SERVER["REQUEST_METHOD"]=="GET" ) {
     $data = [];
     try {
         echo $_SERVER['REQUEST_URI'];
-        if ( $_SERVER['REQUEST_URI']=="/user.php"){
+        if ( $_SERVER['REQUEST_URI']=="/user.php?test"){
+            $res=selectUserName();
+            echo json_encode(array("Name"=>$res),JSON_UNESCAPED_UNICODE);
+        }
+
+        if ( $_SERVER['REQUEST_URI']=="/user.php/make"){
             $res=selectUserName();
             echo json_encode(array("Name"=>$res),JSON_UNESCAPED_UNICODE);
         }

@@ -38,7 +38,7 @@ function insertUserInfo()
 function selectUserName()
 {
     $pdo = pdoSqlConnect();
-    $query = "SELECT Name FROM CUSTOMERS";
+    $query = "SELECT Name,Password FROM CUSTOMERS";
 
     $st = $pdo->prepare($query);
     $st->execute();
@@ -54,18 +54,42 @@ function selectUserName()
 }
 
 
-
+ 
 if($_SERVER["REQUEST_METHOD"]=="GET" ) {
     $data = [];
+    
     try {
         echo $_SERVER['REQUEST_URI'];
-        if ( $_SERVER['REQUEST_URI']=="/user.php"){
+        if ( $_SERVER['REQUEST_URI']=="/user.php/selectName"){
             $res=selectUserName();
-            echo json_encode(array("Name"=>$res),JSON_UNESCAPED_UNICODE);
+            echo json_encode(array("name"=>$res),JSON_UNESCAPED_UNICODE);
         }
 
 
  }
+
+ 
+catch (Exception $e) {
+    $errorLogs ="";
+    return 1;
+}
+}
+
+ 
+if($_SERVER["REQUEST_METHOD"]=="POST" ) {
+    $data = [];
+    
+    try {
+        echo $_SERVER['REQUEST_URI'];
+        if ( $_SERVER['REQUEST_URI']=="/user.php/selectName"){
+            $res=selectUserName();
+            echo json_encode(array("name"=>$res),JSON_UNESCAPED_UNICODE);
+        }
+
+
+ }
+
+ 
 catch (Exception $e) {
     $errorLogs ="";
     return 1;
