@@ -67,7 +67,8 @@ if($_SERVER["REQUEST_METHOD"]=="GET" ) {
     $data = [];
     
     try {
-        echo $_GET['q']; 
+
+        $ $_GET['q'];
         echo $_SERVER['REQUEST_URI'];
         if ( $_SERVER['REQUEST_URI']=="/user.php/selectName"){
             $res=selectUserName();
@@ -83,7 +84,7 @@ catch (Exception $e) {
     return 1;
 }
 }
-
+// 로그인 후 순위
  //post 메소드
 if($_SERVER["REQUEST_METHOD"]=="POST" ) {
 
@@ -92,10 +93,15 @@ if($_SERVER["REQUEST_METHOD"]=="POST" ) {
         //회원가입
         $res=["성공"];
         if ( $_SERVER['REQUEST_URI']=="/user.php"){
+            //body값 받는 코드
             $Name = $_POST["Name"];
             $Phone_num = $_POST["Phone_num"];
             $Password = $_POST["Password"];
+
+            //데이터 넣는 코드
             insertUserInfo($Name,$Password,$Phone_num);
+
+            //응답 코드
             echo json_encode(array("name"=>$res),JSON_UNESCAPED_UNICODE);
         }
 
