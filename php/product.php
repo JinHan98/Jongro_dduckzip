@@ -22,6 +22,7 @@ function pdoSqlConnect()
     }
 }
 
+//회원가입
 function insertUserInfo()
 {
     $pdo = pdoSqlConnect();

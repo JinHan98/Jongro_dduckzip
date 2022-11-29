@@ -22,18 +22,22 @@ function pdoSqlConnect()
     }
 }
 
-function insertUserInfo()
+//회원가입
+function insertUserInfo($Name,$Password,$Phone_num)
 {
+
+
     $pdo = pdoSqlConnect();
-    $query = "INSERT INTO CUSTOMERS (Name,  Password,Date, Phone_num)
-                VALUES ('김규리','비밀번호', '날짜', '휴대폰번호')";
-
+    $query = "INSERT INTO CUSTOMERS (Name,  Password, Phone_num)
+                VALUES (?,?,?)";
     $st = $pdo->prepare($query);
-    $st->execute([]);
-
+    $st->execute([$Name,$Password,$Phone_num]);
     $st = null;
     $pdo = null;
 }
+
+
+
 
 function selectUserName()
 {
@@ -53,12 +57,17 @@ function selectUserName()
 
 }
 
+//쿼리스트링 코드
+//echo file_get_contents("php://input");
+//  echo json_decode(file_get_contents("php://input"))->{"num1"};
 
+// echo json_encode(array("name"=>$res),JSON_UNESCAPED_UNICODE);
  
 if($_SERVER["REQUEST_METHOD"]=="GET" ) {
     $data = [];
     
     try {
+        echo $_GET['q']; 
         echo $_SERVER['REQUEST_URI'];
         if ( $_SERVER['REQUEST_URI']=="/user.php/selectName"){
             $res=selectUserName();
@@ -75,17 +84,20 @@ catch (Exception $e) {
 }
 }
 
- 
+ //post 메소드
 if($_SERVER["REQUEST_METHOD"]=="POST" ) {
-    $data = [];
+
     
     try {
-        echo $_SERVER['REQUEST_URI'];
-        if ( $_SERVER['REQUEST_URI']=="/user.php/selectName"){
-            $res=selectUserName();
+        //회원가입
+        $res=["성공"];
+        if ( $_SERVER['REQUEST_URI']=="/user.php"){
+            $Name = $_POST["Name"];
+            $Phone_num = $_POST["Phone_num"];
+            $Password = $_POST["Password"];
+            insertUserInfo($Name,$Password,$Phone_num);
             echo json_encode(array("name"=>$res),JSON_UNESCAPED_UNICODE);
         }
-
 
  }
 
