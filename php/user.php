@@ -68,8 +68,8 @@ if($_SERVER["REQUEST_METHOD"]=="GET" ) {
     
     try {
 
-        $ $_GET['q'];
-        echo $_SERVER['REQUEST_URI'];
+      //  $ $_GET['q'];
+
         if ( $_SERVER['REQUEST_URI']=="/user.php/selectName"){
             $res=selectUserName();
             echo json_encode(array("name"=>$res),JSON_UNESCAPED_UNICODE);

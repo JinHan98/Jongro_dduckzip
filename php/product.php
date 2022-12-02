@@ -22,31 +22,50 @@ function pdoSqlConnect()
     }
 }
 
-//회원가입
-function insertUserInfo()
+//추천 상품 조회
+function selectMainPageProducts()
 {
     $pdo = pdoSqlConnect();
-    $query = "INSERT INTO CUSTOMERS (Name,  Password,Date, Phone_num)
-                VALUES ('김규리','비밀번호', '날짜', '휴대폰번호')";
-
-    $st = $pdo->prepare($query);
-    $st->execute([]);
-
-    $st = null;
-    $pdo = null;
-}
-
-function selectUserName()
-{
-    $pdo = pdoSqlConnect();
-    $query = "SELECT Name FROM CUSTOMERS";
+    $query = "SELECT Order_id,Product_name,Order_datetime,Order_many,Price,Order_number FROM ORDERS O,PRODUCT P,CUSTOMERS C
+    WHERE O.product_id=P.Product_id and C.Customer_id=O.customer_id and order_or_delivery=1";
 
     $st = $pdo->prepare($query);
     $st->execute();
     $st->setFetchMode(PDO::FETCH_ASSOC);
     $result = $st->fetchAll();
+    $st = null;
+    $pdo = null;
 
+    return $result;
+}
 
+//판매 상품 리스트
+function selectProductList()
+{
+    $pdo = pdoSqlConnect();
+    $query = "SELECT Product_name,Price,ImgUrl FROM PRODUCT P";
+
+    $st = $pdo->prepare($query);
+    $st->execute();
+    $st->setFetchMode(PDO::FETCH_ASSOC);
+    $result = $st->fetchAll();
+    $st = null;
+    $pdo = null;
+
+    return $result;
+
+}
+
+//판매 상품 디테일
+function selectProductDetail()
+{
+    $pdo = pdoSqlConnect();
+    $query = "SELECT Product_name,Price,ImgUrl FROM PRODUCT P";
+
+    $st = $pdo->prepare($query);
+    $st->execute();
+    $st->setFetchMode(PDO::FETCH_ASSOC);
+    $result = $st->fetchAll();
     $st = null;
     $pdo = null;
 
@@ -58,17 +77,26 @@ function selectUserName()
 
 if($_SERVER["REQUEST_METHOD"]=="GET" ) {
     $data = [];
+
     try {
-        echo $_SERVER['REQUEST_URI'];
-        if ( $_SERVER['REQUEST_URI']=="/user.php?test"){
-            $res=selectUserName();
-            echo json_encode(array("Name"=>$res),JSON_UNESCAPED_UNICODE);
+        //메인 화면
+
+        if ( $_SERVER['REQUEST_URI']=="/product.php/main"){
+            $res=selectMainPageProducts();
+            echo json_encode(array("products"=>$res),JSON_UNESCAPED_UNICODE);
         }
 
-        if ( $_SERVER['REQUEST_URI']=="/user.php/make"){
-            $res=selectUserName();
-            echo json_encode(array("Name"=>$res),JSON_UNESCAPED_UNICODE);
+        //판매상품 조회s
+        if ( $_SERVER['REQUEST_URI']=="/product.php/product-list"){
+            $res=selectProductList();
+            echo json_encode(array("productList"=>$res),JSON_UNESCAPED_UNICODE);
         }
+
+        if ( $_SERVER['REQUEST_URI']=="/product.php/product-detail"){
+            $res=selectProductList();
+            echo json_encode(array("productList"=>$res),JSON_UNESCAPED_UNICODE);
+        }
+
 
 
  }
