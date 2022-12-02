@@ -22,78 +22,45 @@ function pdoSqlConnect()
     }
 }
 
-function insertUserInfo()
+//예약 조회
+function selectReservation($customer_id)
 {
     $pdo = pdoSqlConnect();
-    $query = "INSERT INTO CUSTOMERS (Name,  Password,Date, Phone_num)
-                VALUES ('김규리','비밀번호', '날짜', '휴대폰번호')";
+    $query = "SELECT Order_id,Product_name,Order_datetime,Order_many,Price,Order_number FROM ORDERS O,PRODUCT P
+    WHERE O.product_id=P.Product_id  and order_or_delivery=0
+    and O.Customer_id=?";
 
     $st = $pdo->prepare($query);
-    $st->execute([]);
+    $st->execute([$customer_id]);
 
     $st = null;
     $pdo = null;
 }
 
-function selectUserName()
-{
-    $pdo = pdoSqlConnect();
-    $query = "SELECT Name,Password FROM CUSTOMERS";
 
-    $st = $pdo->prepare($query);
-    $st->execute();
-    $st->setFetchMode(PDO::FETCH_ASSOC);
-    $result = $st->fetchAll();
-
-
-    $st = null;
-    $pdo = null;
-
-    return $result;
-
-}
-
-
- 
 if($_SERVER["REQUEST_METHOD"]=="GET" ) {
     $data = [];
     
     try {
-        echo $_SERVER['REQUEST_URI'];
-        if ( $_SERVER['REQUEST_URI']=="/user.php/selectName"){
-            $res=selectUserName();
-            echo json_encode(array("name"=>$res),JSON_UNESCAPED_UNICODE);
+
+        if ( $_SERVER['REQUEST_URI']=="/orders.php/selectReservation"){
+          // $customer_id= $_GET['customer_id'];
+
+          // echo  $_GET['q'];
+            //echo '아';
+           // $res=selectReservation($customer_id);
+            echo json_encode(array("reservationList"=>$res),JSON_UNESCAPED_UNICODE);
         }
 
 
  }
-
  
 catch (Exception $e) {
     $errorLogs ="";
     return 1;
 }
-}
-
- 
-if($_SERVER["REQUEST_METHOD"]=="POST" ) {
-    $data = [];
-    
-    try {
-        echo $_SERVER['REQUEST_URI'];
-        if ( $_SERVER['REQUEST_URI']=="/user.php/selectName"){
-            $res=selectUserName();
-            echo json_encode(array("name"=>$res),JSON_UNESCAPED_UNICODE);
-        }
 
 
- }
-
- 
-catch (Exception $e) {
-    $errorLogs ="";
-    return 1;
-}
 }
 
 

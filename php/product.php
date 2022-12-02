@@ -26,7 +26,7 @@ function pdoSqlConnect()
 function selectMainPageProducts()
 {
     $pdo = pdoSqlConnect();
-    $query = "SELECT Order_id,Product_name,Order_datetime,Order_many,Price,Order_number FROM ORDERS O,PRODUCT P,CUSTOMERS C
+    $query = "SELECT Order_id,Product_name,Order_datetime,Order_many,Price,Order_number,Product_id FROM ORDERS O,PRODUCT P,CUSTOMERS C
     WHERE O.product_id=P.Product_id and C.Customer_id=O.customer_id and order_or_delivery=1";
 
     $st = $pdo->prepare($query);
@@ -43,7 +43,7 @@ function selectMainPageProducts()
 function selectProductList()
 {
     $pdo = pdoSqlConnect();
-    $query = "SELECT Product_name,Price,ImgUrl FROM PRODUCT P";
+    $query = "SELECT Product_name,Price,ImgUrl,Product_id FROM PRODUCT P";
 
     $st = $pdo->prepare($query);
     $st->execute();
@@ -60,7 +60,7 @@ function selectProductList()
 function selectProductDetail()
 {
     $pdo = pdoSqlConnect();
-    $query = "SELECT Product_name,Price,ImgUrl FROM PRODUCT P";
+    $query = "SELECT Product_name,Price,ImgUrl,ProductDetail FROM PRODUCT P";
 
     $st = $pdo->prepare($query);
     $st->execute();
@@ -86,15 +86,16 @@ if($_SERVER["REQUEST_METHOD"]=="GET" ) {
             echo json_encode(array("products"=>$res),JSON_UNESCAPED_UNICODE);
         }
 
-        //판매상품 조회s
+        //판매상품 조회
         if ( $_SERVER['REQUEST_URI']=="/product.php/product-list"){
             $res=selectProductList();
             echo json_encode(array("productList"=>$res),JSON_UNESCAPED_UNICODE);
         }
 
+        //판매상품 디테일
         if ( $_SERVER['REQUEST_URI']=="/product.php/product-detail"){
-            $res=selectProductList();
-            echo json_encode(array("productList"=>$res),JSON_UNESCAPED_UNICODE);
+            $res=selectProductDetail();
+            echo json_encode(array("productDetailList"=>$res),JSON_UNESCAPED_UNICODE);
         }
 
 
