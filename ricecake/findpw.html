@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종로떡집</title>
+    <script src="https://kit.fontawesome.com/006857925c.js" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" type="text/css" href="findpw.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+</head>
+<script>
+function check(form){
+    if(form.username.value=="이승지"){
+        if(form.userid.value=="pengsoo") {
+            if(form.userphone.value=="01012341234"){
+                window.open('main.html')
+            }
+            else alert("전화번호를 다시 확인해주세요. ");
+        }
+        else alert("아이디를 다시 확인해주세요. ");
+    }
+    else alert("이름을 다시 확인해주세요. ");
+}
+</script>
+<body>
+    <div class="wrap">
+        <div class="intro">
+        <div class="intro_bg">
+            <div class="header">
+                <ul class="nav">
+                    <li><a href="#" onclick="location.href='login.html'">로그인</a></li>
+                    <li><a href="#" onclick="location.href='logout.html'"> 로그아웃</a></li>
+                    <li><a href="#" onclick="location.href='signin.html'">회원가입</a></li>
+                    <li><a1 href="#"onclick="location.href='admin.html'">관리자전용</a1></li>
+                </ul>
+            </div>
+            <div class="intro_name">
+                <a href="#" onclick="location.href='main.html'"><center>종로떡집</center></a>
+            </div>
+            <div class="intro_png">
+                <img src="./images/rainbow.png" alt="">
+            </div>
+        </div>
+
+        <div class="menu_bar">
+            
+                <a href="#" onclick="location.href='togo.html'">오시는길</a>
+                <a href="#" onclick="location.href='ricecake.html'">상품</a>
+                <a href="#" onclick="location.href='reserve.html'">예약조회</a>
+                <a href="#" onclick="location.href='deliver.html'">배송조회</a>
+            
+        </div>
+    </div>
+        <div class="container">
+            <form action="#" class="login">
+                <h2 class="title">비밀번호 찾기</h2>
+                <div class="login-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="username" placeholder="이름" />
+                </div>
+                <div class="login-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="userid" placeholder="아이디" />
+                </div>
+                <div class="login-field">
+                    <i class="fas fa-phone"></i>
+                    <input type="text" name="userphone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                    placeholder="전화번호를 입력하세요.(-없이)" maxlength="11"/>
+                </div>
+                
+                <input type="button" onclick="check(this.form)" class="btn solid" value="비밀번호 찾기"/>
+    
+            </form>
+        </div>
+     
+
+    
+    </div>
+</body>
+</html>
