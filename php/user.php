@@ -9,7 +9,7 @@ header("Content-Type:text/html;charset=utf-8");
 function pdoSqlConnect()
 {
     try {
-        $DB_HOST = "jonro.cxmaycbc3ozq.ap-northeast-2.rds.amazonaws.com:3306";
+        $DB_HOST = "jonro-db.cxmaycbc3ozq.ap-northeast-2.rds.amazonaws.com:3306";
         $DB_NAME = "jonro";
         $DB_USER = "admin";
         $DB_PW = "hyun0202";
@@ -70,7 +70,7 @@ if($_SERVER["REQUEST_METHOD"]=="GET" ) {
 
       //  $ $_GET['q'];
 
-        if ( $_SERVER['REQUEST_URI']=="/user.php/selectName"){
+        if ( $_SERVER['REQUEST_URI']=="/user.php/selectNames"){
             $res=selectUserName();
             echo json_encode(array("name"=>$res),JSON_UNESCAPED_UNICODE);
         }
@@ -102,7 +102,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" ) {
             insertUserInfo($Name,$Password,$Phone_num);
 
             //응답 코드
-            echo json_encode(array("name"=>$res),JSON_UNESCAPED_UNICODE);
+            echo json_encode(array("result"=>$res),JSON_UNESCAPED_UNICODE);
         }
 
  }

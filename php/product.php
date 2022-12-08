@@ -9,7 +9,7 @@ header("Content-Type:text/html;charset=utf-8");
 function pdoSqlConnect()
 {
     try {
-        $DB_HOST = "jonro.cxmaycbc3ozq.ap-northeast-2.rds.amazonaws.com:3306";
+        $DB_HOST = "jonro-db.cxmaycbc3ozq.ap-northeast-2.rds.amazonaws.com:3306";
         $DB_NAME = "jonro";
         $DB_USER = "admin";
         $DB_PW = "hyun0202";
@@ -26,7 +26,7 @@ function pdoSqlConnect()
 function selectMainPageProducts()
 {
     $pdo = pdoSqlConnect();
-    $query = "SELECT Order_id,Product_name,Order_datetime,Order_many,Price,Order_number,Product_id FROM ORDERS O,PRODUCT P,CUSTOMERS C
+    $query = "SELECT Order_id,Product_name,Order_datetime,Order_many,Price,Order_number,O.Product_id FROM ORDERS O,PRODUCT P,CUSTOMERS C
     WHERE O.product_id=P.Product_id and C.Customer_id=O.customer_id and order_or_delivery=1";
 
     $st = $pdo->prepare($query);
@@ -68,7 +68,6 @@ function selectProductDetail()
     $result = $st->fetchAll();
     $st = null;
     $pdo = null;
-
     return $result;
 
 }
