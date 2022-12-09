@@ -22,7 +22,7 @@ function pdoSqlConnect()
     }
 }
 
-//예약 조회
+//예약 조회 0이 예약임
 function selectReservation()
 {
     $pdo = pdoSqlConnect();
@@ -39,6 +39,38 @@ and O.customer_id=1";
     return $result;
 }
 
+//예약 주문하기
+function insertReservation($customer_id,$product_id,$Order_number,$Order_many,$Order_datetime,$order_or_delivery,$reservationTime)
+{
+    $pdo = pdoSqlConnect();
+    $query = "INSERT INTO ORDERS (customer_id,product_id, Order_number, Order_many, Order_datetime,order_or_delivery,reservationTime )
+                VALUES (?,?,?,?,?,?,?)";
+    $st = $pdo->prepare($query);
+    $st->execute([$customer_id,$product_id,$Order_number,$Order_many,$Order_datetime,$order_or_delivery,$reservationTime]);
+    $st->setFetchMode(PDO::FETCH_ASSOC);
+    $result = $st->fetchAll();
+    $st = null;
+    $pdo = null;
+    return $result;
+}
+
+
+//배달 주문하기
+function insertDelivery($customer_id,$product_id,$Order_number,$Order_many,$Order_datetime,$order_or_delivery,$address)
+{
+    $pdo = pdoSqlConnect();
+    $query = "INSERT INTO ORDERS (customer_id,product_id, Order_number, Order_many, Order_datetime,order_or_delivery,address )
+                VALUES (?,?,?,?,?,?,?)";
+    $st = $pdo->prepare($query);
+    $st->execute([$customer_id,$product_id,$Order_number,$Order_many,$Order_datetime,$order_or_delivery,$address]);
+    $st->setFetchMode(PDO::FETCH_ASSOC);
+    $result = $st->fetchAll();
+    $st = null;
+    $pdo = null;
+    return $result;
+}
+
+
 //배송 조회
 function selectDelivery()
 {
@@ -47,6 +79,38 @@ function selectDelivery()
 SELECT Order_id,Product_name,Order_datetime,Order_many,Price,Order_number FROM ORDERS O,PRODUCT P,CUSTOMERS C
 WHERE O.product_id=P.Product_id and C.Customer_id=O.customer_id and order_or_delivery=1
 and O.customer_id=1";
+    $st = $pdo->prepare($query);
+    $st->execute();
+    $st->setFetchMode(PDO::FETCH_ASSOC);
+    $result = $st->fetchAll();
+    $st = null;
+    $pdo = null;
+    return $result;
+}
+
+//관리자 예약 조회 0이 예약임
+function selectManagerReservation()
+{
+    $pdo = pdoSqlConnect();
+    $query = "
+SELECT Order_id,Product_name,Order_datetime,Order_many,Price,Order_number FROM ORDERS O,PRODUCT P,CUSTOMERS C
+WHERE O.product_id=P.Product_id and C.Customer_id=O.customer_id and order_or_delivery=0";
+    $st = $pdo->prepare($query);
+    $st->execute();
+    $st->setFetchMode(PDO::FETCH_ASSOC);
+    $result = $st->fetchAll();
+    $st = null;
+    $pdo = null;
+    return $result;
+}
+
+//관리자 배송 조회
+function selectManagerDelivery()
+{
+    $pdo = pdoSqlConnect();
+    $query = "
+SELECT Order_id,Product_name,Order_datetime,Order_many,Price,Order_number FROM ORDERS O,PRODUCT P,CUSTOMERS C
+WHERE O.product_id=P.Product_id and C.Customer_id=O.customer_id and order_or_delivery=1";
     $st = $pdo->prepare($query);
     $st->execute();
     $st->setFetchMode(PDO::FETCH_ASSOC);
@@ -75,13 +139,77 @@ if($_SERVER["REQUEST_METHOD"]=="GET" ) {
             echo json_encode(array("deliveryList"=>$res),JSON_UNESCAPED_UNICODE);
         }
 
+        //관리자 예약 조회
+        if ( $_SERVER['REQUEST_URI']=="/orders.php/selectManagerReservation"){
+
+            $res=selectManagerReservation();
+            echo json_encode(array("reservationList"=>$res),JSON_UNESCAPED_UNICODE);
+        }
+
+        //관리자 배송 조회
+        if ( $_SERVER['REQUEST_URI']=="/orders.php/selectManagerDelivery"){
+
+            $res=selectManagerDelivery();
+            echo json_encode(array("deliveryList"=>$res),JSON_UNESCAPED_UNICODE);
+        }
+
 
  }
- 
+
+
 catch (Exception $e) {
     $errorLogs ="";
     return 1;
 }
+
+
+}
+
+if($_SERVER["REQUEST_METHOD"]=="POST" ) {
+
+    try {
+        //회원가입
+        $res=["성공"];
+        if ( $_SERVER['REQUEST_URI']=="/orders.php/insertReservation"){
+            //body값 받는 코드
+
+            $customer_id = $_POST["customer_id"];
+            $product_id = $_POST["product_id"];
+            $Order_number = $_POST["Order_number"];
+            $Order_many = $_POST["Order_many"];
+            $Order_datetime = $_POST["Order_datetime"];
+            $reservationTime= $_POST["reservationTime"];
+
+            //데이터 넣는 코드
+            insertReservation($customer_id,$product_id,$Order_number,$Order_many,$Order_datetime,0,$reservationTime);
+
+
+            //응답 코드
+            echo json_encode(array("result"=>$res),JSON_UNESCAPED_UNICODE);
+        }
+
+            if ( $_SERVER['REQUEST_URI']=="/orders.php/insertDelivery"){
+            //body값 받는 코드
+
+            $customer_id = $_POST["customer_id"];
+            $product_id = $_POST["product_id"];
+            $Order_number = $_POST["Order_number"];
+            $Order_many = $_POST["Order_many"];
+            $Order_datetime = $_POST["Order_datetime"];
+            $address= $_POST["address"];
+
+            //데이터 넣는 코드
+            insertDelivery($customer_id,$product_id,$Order_number,$Order_many,$Order_datetime,1,$address);
+
+            //응답 코드
+            echo json_encode(array("result"=>$res),JSON_UNESCAPED_UNICODE);
+        }
+
+    }
+    catch (Exception $e) {
+        $errorLogs ="";
+        return 1;
+    }
 
 
 }

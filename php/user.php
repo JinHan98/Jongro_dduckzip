@@ -26,7 +26,6 @@ function pdoSqlConnect()
 function insertUserInfo($Name,$Password,$Phone_num)
 {
 
-
     $pdo = pdoSqlConnect();
     $query = "INSERT INTO CUSTOMERS (Name,  Password, Phone_num)
                 VALUES (?,?,?)";
@@ -88,7 +87,6 @@ catch (Exception $e) {
  //post 메소드
 if($_SERVER["REQUEST_METHOD"]=="POST" ) {
 
-    
     try {
         //회원가입
         $res=["성공"];
