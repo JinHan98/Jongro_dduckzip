@@ -1,0 +1,275 @@
+*{
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+    color: black;
+    font-family: 'Nanum Gothic Coding', monospace;
+    background-color: #FBFBEF;
+}
+.intro_bg{
+    width:100%;
+    height:130px;
+    position: static;
+}
+
+
+.intro_name{
+    background-color: #FBFBEF;
+    text-align: center;
+}
+
+.intro_name a center{
+    font-size: 70px;
+    font-family: 'Nanum Brush Script', cursive;
+}
+
+.intro_png{
+    width: 100%;
+    max-height: 25px;
+}
+
+.header{
+    display: flex;
+    width: 100%;
+    margin: auto;
+    background: #FBFBEF;
+    font-size: 13px;
+}
+
+.nav{
+    display: flex;
+    height: 14px;
+}
+
+.nav li{
+    margin-left: 20px;
+    padding-top: 10px;
+}
+
+.nav li a1{
+    color: rgb(169, 165, 165);
+    cursor: pointer;
+}
+
+.menu_bar{
+    max-width: 100%;
+    height: 33px;
+    position: relative;
+    background-color:#FBFBEF;
+    overflow: hidden;
+}
+
+.menu_bar_inside a{
+    font-size: 25px;
+    font-family: 'Nanum Brush Script', cursive;
+    margin-left: 65px;
+    margin-right: 125px;
+    display: inline-block;
+    background-color: transparent;
+}
+
+.menu_bar_inside a1{
+    font-size: 25px;
+    font-family: 'Nanum Brush Script', cursive;
+    margin-left: 65px;
+    margin-right: 125px;
+    display: inline-block;
+    background-color: transparent;
+    color: gray;
+    cursor: pointer;
+}
+
+
+.menu_bar_inside{
+    transform: translate(10%, 10%);
+}
+
+.menu_bar .menu_bar_inside a:hover,.menu_bar .menu_bar_inside a1:hover{
+    transform: scale(1.3);
+    color:gray;
+}
+
+.rc_bar{
+    width: 800px;
+    max-height: 45px;
+    margin-top:10px;
+    border: 1px black;
+    background-color: white;
+}
+
+.rc_bar h3{
+    font-size: 40px;
+    font-family: 'Nanum Brush Script', cursive;
+    margin-left: 70px;
+}
+.rc_bar h6{
+    font-size: 10px;
+    font-family: 'Nanum Brush Script', cursive;
+    margin-left: 70px;
+    vertical-align: text-bottom;
+    width: 100px; /* 정렬하려는 요소의 넓이를 반드시 지정 */
+}
+
+.rc_bar a{
+    font-family: 'Nanum Brush Script', cursive;
+    font-size: 17px;
+    margin-top: 25px;
+    margin-left: 20px;
+    vertical-align: bottom;
+    text-align: left;
+}
+.left-image{
+    float: left;
+}
+.main{
+    margin: 80px;
+    border-top: 2px solid rgb(171, 168, 168);
+    font-size: 25px;
+    font-family: 'Nanum Brush Script', cursive;
+    background-color: white;
+}
+.content{
+    float: right;
+    width: 65%;
+}
+.content > div{
+    border-top: 1px rgb(171, 168, 168);
+}
+.up_content{
+    height: 50px;
+    width: 80%;
+    border-top: 1px solid rgb(171, 168, 168);
+    border-bottom: 1px solid rgb(171, 168, 168);
+}
+.num{
+    float: left;
+    text-align: center;
+    padding: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.back_menu a{
+    float: right;
+    text-align: center;
+    padding: 10px;
+    margin-left: 100px;
+    cursor: pointer;
+    font-family: 'Nanum Brush Script', cursive;
+    color: gray;
+}
+
+.back_menu a:hover{
+    color: black;
+}
+.context{
+    border-top: 1px solid rgb(171, 168, 168);
+    border-bottom: 1px solid rgb(171, 168, 168);
+    height: 350px;
+    width: 100%;
+    padding: 10px;
+    
+}
+.up_content{
+    border-bottom: 1px solid rgb(171, 168, 168);
+    width: 100%;
+}
+
+.explain{
+    float: top;
+    padding: 10px;
+    line-height: 150%;
+    height: 288px;
+    font-size: 20px;
+}
+.cost{
+    padding-top: 10px;
+    padding-left: 50px;
+    padding-bottom: 10px;
+    color: red;
+    float: left;
+    font-family: 'Nanum Brush Script', cursive;
+}
+.button{
+    padding: 10px;
+}
+.plus_minus_button{
+    float: right;
+    width: 100px;
+    margin-right: 200px;
+}
+
+.reser{
+    float: left;
+    margin-left: 250px;
+    width: 100px;
+    height: 50px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(176, 173, 173);
+    color: white;
+    font-size: 20px;
+    font-family: 'Nanum Brush Script', cursive;
+    cursor: pointer;
+    
+}
+.order{
+    float: right;
+    margin-right: 250px;
+    width: 100px;
+    height: 50px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(176, 173, 173);
+    color: white;
+    font-size: 20px;
+    font-family: 'Nanum Brush Script', cursive;
+    cursor: pointer;
+}
+
+.button :hover{
+    color:black;
+}
+
+
+.total{
+    padding: 10px;
+    float: left;
+    font-family: 'Nanum Brush Script', cursive;
+}
+.plus{
+    float: left;
+    font-size: 20px;
+    height: 25px;
+    width: 25px;
+    padding: 10px;
+    border: 1px black;
+    cursor: pointer;
+    font-family: 'Nanum Brush Script', cursive;
+}
+.minus{
+    float: left;
+    font-size: 20px;
+    height: 25px;
+    width: 25px;
+    padding: 10px;
+    border: 1px black;
+    cursor: pointer;
+    font-family: 'Nanum Brush Script', cursive;
+}
+.many{
+    float: left;
+    height: 25px;
+    font-size: 20px;
+    padding: 10px;
+    border: 1px black;
+    font-family: 'Nanum Brush Script', cursive;
+}
+
+.left-image img{
+    filter: drop-shadow(3px 3px 3px gray); 
+}

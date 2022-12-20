@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./images/favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종로떡집</title>
+    <link rel="stylesheet" type="text/css" href="main.css?ver=2">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="./screen.js"></script>
+   
+</head>
+<script>
+    const list = document.createDocumentFragment();
+
+    async function getMenu() {
+        const url = `http://localhost:8888/product.php/main`;
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const res = await fetch(url, options);
+        const data = await res.json();
+        if (res.ok) {
+            <!-- console.log(data) -->
+            return data;
+        } else {
+            throw Error(data);
+        }   
+    }
+
+    async function renderMenus() {
+        let menulist = await getMenu();
+
+        let html = '';
+        for(let i = 0; i < menulist.products.length; i++) {
+            let menu = menulist.products[i];
+            let id = menulist.products[i].Product_id
+            
+            console.log(menu.Price);
+            console.log(menu.Product_name);
+
+            let htmlSegment = 
+            
+            `<div class="rcmd_ph">
+                <div class="rcmd_ph_rc">
+                    <a href="#" onclick="location.href='ricecakedetail.html?${id}'" class="product">
+                    <img src="${menu.ImgUrl}" alt="" width="250px;" height="200px;">
+                </div>
+                <div class="product-name">
+                    <h4>${menu.Product_name}</h4>
+                </div>
+                <div class="product-price">
+                    <a>${menu.Price}원</a>
+                </div>
+
+            </div>`;
+    
+            html += htmlSegment;
+        };
+    
+        let container = document.querySelector('.rcmd_box');
+        container.innerHTML = html;
+    }
+</script>
+<body>
+    <div class="wrap">
+      
+        <div class="intro_bg">
+            <div class="header">
+                <ul class="nav">
+                    <li><a href="#" onclick="location.href='login.html'">로그인</a></li>
+                    <li><a href="#" onclick="Confirm()"> 로그아웃</a></li>
+                    <li><a href="#" onclick="location.href='signin.html'">회원가입</a></li>
+                    <li><a1 href="#"onclick="location.href='adlogin.html'">관리자전용</a1></li>
+                </ul>
+            </div>
+            <div class="intro_name">
+                <a href="#" onclick="location.href='main.html'"><center>종로떡집</center></a>
+            </div>
+            <div class="intro_png">
+                <img src="./images/rainbow.png" alt="" width="100%">
+            </div>
+        </div>
+
+        <div class="menu_bar">
+            <div class="menu_bar_inside">
+                <a href="#" onclick="location.href='togo.html'">오시는길</a>
+                <a href="#" onclick="location.href='ricecake.html'">상품</a>
+                <a href="#" onclick="location.href='reserve.html'">예약조회</a>
+                <a href="#" onclick="location.href='deliver.html'">배송조회</a>
+                <a href="#" onclick="location.href='findmaterial.html'">재료찾기</a>
+            </div>
+        </div>
+
+        <div class="container">
+            <img src="./images/yummy4.jpeg" alt=""  width="33.33%" margin-left="0" height= "260px">
+            <img src="./images/slide02.jpeg" alt=""  width="33.33%" height= "260px">
+            <img src="./images/slide03.jpeg" alt="" width="33.33%"  height= "260px">
+            
+        </div>
+
+        <div class="rcmd">
+            <div class="rcmd_bar">
+                <h3>추천상품</h3>
+                <a>종로떡집의 추천상품을 살펴보세요.</a>
+            </div>
+
+
+            <center>
+            <div class="rcmd_box">
+                <script>
+                    renderMenus();
+                </script>
+
+            </div>
+        </center>
+        </div>
+        
+    </div>
+
+    
+</body>
+</html>

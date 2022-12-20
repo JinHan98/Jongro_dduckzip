@@ -1,0 +1,150 @@
+*{
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+    color: black;
+    font-family: 'Nanum Gothic Coding', monospace;
+    background-color: #FBFBEF;
+}
+
+.intro_bg{
+    width:100%;
+    height:130px;
+    position: static;
+}
+
+
+.intro_name{
+    background-color: #FBFBEF;
+    text-align: center;
+}
+
+.intro_name a center{
+    font-size: 70px;
+    font-family: 'Nanum Brush Script', cursive;
+}
+
+.intro_png{
+    width: 100%;
+    max-height: 25px;
+}
+
+.header{
+    display: flex;
+    width: 100%;
+    margin: auto;
+    background: #FBFBEF;
+    font-size: 13px;
+}
+
+.nav{
+    display: flex;
+    height: 14px;
+    
+}
+
+.nav li{
+    padding-top: 10px;
+    
+    margin-left: 20px;
+}
+
+.nav li a1{
+    color: rgb(169, 165, 165);
+    cursor: pointer;
+}
+
+.menu_bar{
+    max-width: 100%;
+    height: 33px;
+    position: relative;
+    background-color:#FBFBEF;
+    overflow: hidden;
+}
+
+.menu_bar_inside a{
+    font-size: 25px;
+    font-family: 'Nanum Brush Script', cursive;
+    margin-left: 65px;
+    margin-right: 125px;
+    display: inline-block;
+    background-color: transparent;
+}
+
+.menu_bar_inside a1{
+    font-size: 25px;
+    font-family: 'Nanum Brush Script', cursive;
+    margin-left: 65px;
+    margin-right: 125px;
+    display: inline-block;
+    background-color: transparent;
+    color: gray;
+    cursor: pointer;
+}
+
+.menu_bar_inside{
+    transform: translate(10%, 10%);
+}
+
+.menu_bar .menu_bar_inside a:hover, .menu_bar .menu_bar_inside a1:hover{
+    transform: scale(1.3);
+    color:gray;
+}
+
+.middle{
+    width: 100%;
+    height: 250px;
+}
+
+.container{
+    width: 100%;
+    display:flex;
+}
+
+.btm{
+    border: dotted 1px rgb(230, 230, 199);
+}
+
+.rcmd_bar{
+    width: 100%;
+    max-height: 45px;
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+}
+
+.rcmd_bar h3{
+    font-size: 40px;
+    font-family: 'Nanum Brush Script', cursive;
+    margin-left: 70px;
+}
+
+.rcmd_bar a{
+    font-family: 'Nanum Brush Script', cursive;
+    font-size: 17px;
+    margin-top: 25px;
+    margin-left: 20px;
+}
+
+.rcmd_box{
+    max-width: 100%;
+    display: flex;
+    padding-top: 1.3%;
+}
+.rcmd_ph{
+    width: 25%;
+}
+.rcmd_ph_rc img{
+    filter: drop-shadow(3px 3px 3px gray); 
+}
+.product-name{
+    padding-top: 10px;
+    font-size: 20px;
+}
+.product-price{
+    padding-top: 5px;
+    font-size: 17px;
+}
+

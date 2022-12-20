@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./images/favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종로떡집</title>
+    <link rel="stylesheet" type="text/css" href="rcreserve.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="./rcreserve.js?ver=2"></script>
+
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="intro_bg">
+            <div class="header">
+                <ul class="nav">
+                    <li><a href="#" onclick="location.href='login.html'">로그인</a></li>
+                    <li><a href="#" onclick="Confirm()"> 로그아웃</a></li>
+                    <li><a href="#" onclick="location.href='signin.html'">회원가입</a></li>
+                    <li><a1 href="#"onclick="location.href='adlogin.html'">관리자전용</a1></li>
+                </ul>
+            </div>
+            <div class="intro_name">
+                <a href="#" onclick="location.href='main.html'"><center>종로떡집</center></a>
+            </div>
+            <div class="intro_png">
+                <img src="./images/rainbow.png" alt="" width="100%">
+            </div>
+        </div>
+        
+        <div class="menu_bar">
+            
+            <div class="menu_bar_inside">
+                <a href="#" onclick="location.href='togo.html'">오시는길</a>
+                <a href="#" onclick="location.href='ricecake.html'">상품</a>
+                <a href="#" onclick="location.href='reserve.html'">예약조회</a>
+                <a href="#" onclick="location.href='deliver.html'">배송조회</a>
+                <a href="#" onclick="location.href='findmaterial.html'">재료찾기</a>
+
+            </div>
+        </div>
+
+
+        <div class="container">
+            <form method="post" action="" enctype="text/plain" >
+                <h2 class="title">상품 예약</h2>
+                <!-- <p><input type="date" id="dateTimeLocal" min="2022-12-01" max="2022-12-31"
+                    class="btn"></p> -->
+                <!-- <p><input type="time" min="09:00:00" max="18:00:00" class="btn"></p> -->
+                <input type="datetime-local" id="dateTimeLocal" min="09:00:00" max="18:00:00" class="btn">
+                <div class="button">
+                    <input type="button" value="확인" class="btn1">
+                </div>
+            </form>
+
+            <script>
+                var btn = document.querySelector('.btn1');
+     
+                btn.addEventListener('click', Check);   
+
+                let dateElement = document.getElementById('dateTimeLocal');
+                let date = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+                dateElement.value = date;
+                dateElement.setAttribute("min", date);
+                console.log(dateElement.value);
+        
+                function setMinValue() {
+                    if(dateElement.value < date) {
+                        alert('현재 시간보다 이전의 날짜는 설정할 수 없습니다.');
+                        dateElement.value = date;
+                    }
+                }
+
+                function Check(){
+                    if(window.confirm("상품예약을 신청하시겠습니까? 취소철회는 불가능합니다.")) {
+                        postReserve();
+                    }
+                }
+
+
+                function Confirm(){
+                    window.confirm("로그아웃을 하시겠습니까?");
+                }
+
+                function resizeApply() {
+                    var minWidth = 1500;
+                    var body = document.getElementsByTagName('body')[0];
+                    if (window.innerWidth < minWidth) { body.style.zoom = (window.innerWidth / minWidth); }
+                    else body.style.zoom = 1;
+                }
+      
+                window.onload = function() {
+                window.addEventListener('resize', function() {
+                    resizeApply();
+                    });
+                }
+      
+                resizeApply();
+            </script>
+    
+        </div>
+       
+    
+
+    </body>
+     </html>

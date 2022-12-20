@@ -26,8 +26,7 @@ function pdoSqlConnect()
 function selectMainPageProducts()
 {
     $pdo = pdoSqlConnect();
-    $query = "SELECT Order_id,Product_name,Order_datetime,Order_many,Price,Order_number,O.Product_id FROM ORDERS O,PRODUCT P,CUSTOMERS C
-    WHERE O.product_id=P.Product_id and C.Customer_id=O.customer_id and order_or_delivery=1";
+    $query = "SELECT Product_name,Price,ImgUrl,Product_id FROM PRODUCT P limit 4";
 
     $st = $pdo->prepare($query);
     $st->execute();
@@ -57,13 +56,13 @@ function selectProductList()
 }
 
 //판매 상품 디테일
-function selectProductDetail()
+function selectProductDetail($productId)
 {
     $pdo = pdoSqlConnect();
-    $query = "SELECT Product_name,Price,ImgUrl,ProductDetail FROM PRODUCT P";
+    $query = "SELECT Product_name,Price,ImgUrl,ProductDetail FROM PRODUCT P where Product_id=?";
 
     $st = $pdo->prepare($query);
-    $st->execute();
+    $st->execute([$productId]);
     $st->setFetchMode(PDO::FETCH_ASSOC);
     $result = $st->fetchAll();
     $st = null;
@@ -92,9 +91,14 @@ if($_SERVER["REQUEST_METHOD"]=="GET" ) {
         }
 
         //판매상품 디테일
-        if ( $_SERVER['REQUEST_URI']=="/product.php/product-detail"){
-            $res=selectProductDetail();
+        if (strpos($_SERVER['REQUEST_URI'],"/product.php/product-detail")!==false){
+
+
+            $productId = $_GET['productId'];
+            $res=selectProductDetail($productId);
+
             echo json_encode(array("productDetailList"=>$res),JSON_UNESCAPED_UNICODE);
+
         }
 
 
@@ -105,6 +109,3 @@ catch (Exception $e) {
     return 1;
 }
 }
-
-
-

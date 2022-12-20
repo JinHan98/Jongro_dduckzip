@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./images/favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종로떡집</title>
+    <link rel="stylesheet" type="text/css" href="deliver.css?ver=1">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="./addeliver.js"></script>
+</head>
+
+<script>
+    const list = document.createDocumentFragment();
+
+    async function getDelivery() {
+        const url = `http://localhost:8888/orders.php/selectManagerDelivery`;
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const res = await fetch(url, options);
+        const data = await res.json();
+        if (res.ok) {
+            <!-- console.log(data) -->
+            return data;
+        } else {
+            throw Error(data);
+        }   
+    }
+
+    async function renderDelivery() {
+        let deliverylist = await getDelivery();
+
+        let html = '';
+        for(let i = 0; i < deliverylist.deliveryList.length; i++) {
+            let delivery = deliverylist.deliveryList[i];
+
+            let htmlSegment
+            if(delivery.status == 'F') {
+                htmlSegment =
+                `<div>
+                    <div class="num">
+                        <i class="fa-solid fa-caret-right"></i>
+                        <strong style = "text-decoration:line-through; text-decoration-color:orange" >주문번호:  ${delivery.Order_id}</strong>
+                    <br/><br/>
+                    <a><i class="fa-solid fa-truck-fast"></i>
+                        ${delivery.address}</a>
+                    <br/></div>
+                    <div class="order" style = "text-decoration:line-through; text-decoration-color:orange">${delivery.Product_name} 1개</div>
+                    <div class="cost" >결제금액 : ${delivery.Price}원</div>
+    
+                </div>`;
+            }
+            else {
+                htmlSegment =
+                    `<div onclick= "onClick(${delivery.Order_id})">
+                        <div class="num">
+                            <i class="fa-solid fa-caret-right"></i> <strong>주문번호:  ${delivery.Order_id}</strong>
+                        <br/><br/>
+                        <a><i class="fa-solid fa-truck-fast"></i>
+                            ${delivery.address}</a>
+                        <br/></div>
+                        <div class="order">${delivery.Product_name} 1개</div>
+                        <div class="cost">결제금액 : ${delivery.Price}원</div>
+        
+                    </div>`;
+            }
+    
+            html += htmlSegment;
+        };
+        let container = document.querySelector('.board_list');
+        container.innerHTML = html;
+    }
+</script>
+
+<body>
+    <div class="wrap">
+        <div class="intro_bg">
+            <div class="header">
+                <ul class="nav">
+                    <li><a href="#" onclick="location.href='login.html'">로그인</a></li>
+                    <li><a href="#" onclick="Confirm()"> 로그아웃</a></li>
+                    <li><a href="#" onclick="location.href='signin.html'">회원가입</a></li>
+                    <li><a1 href="#"onclick="location.href='adlogin.html'">관리자전용</a1></li>
+                </ul>
+            </div>
+            <div class="intro_name">
+                <a href="#" onclick="location.href='main.html'"><center>종로떡집</center></a>
+            </div>
+            <div class="intro_png">
+                <img src="./images/rainbow.png" alt="" width="100%">
+            </div>
+        </div>
+        
+        <div class="menu_bar">
+            
+            <div class="menu_bar_inside">
+                
+                <a href="#" onclick="location.href='togo.html'">오시는길</a>
+                <a href="#" onclick="location.href='ricecake.html'">상품</a>
+                <a href="#" onclick="location.href='adreserve.html'">예약조회</a>
+                <a href="#" onclick="location.href='addeliver.html'">배송조회</a>
+                <a href="#" onclick="location.href='findmaterial.html'">재료찾기</a>
+
+            </div>
+        </div>
+
+        <div class="rc">
+            <div class="rc_bar">
+                <h3>관리자 배송조회</h3>
+                <a>주문 배송 조회</a>
+                <a1>완료된 배송은 클릭하면 완료가 됩니다.</a1>
+            </div>
+        </div>
+
+        <center>
+        <div class="board_wrap">
+            <div class="board_list_wrap">
+                <div class="board_list">
+                    <script>
+                        renderDelivery()
+                    </script>
+                </div>
+            </div>
+        </div>
+
+    
+
+
+
+    </body>
+     </html>
