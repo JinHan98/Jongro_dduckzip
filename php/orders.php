@@ -27,7 +27,8 @@ function selectReservation()
 {
     $pdo = pdoSqlConnect();
     $query = "
-SELECT Order_id,Product_name,Order_datetime,Order_many,Price,Order_number,O.address,Order_price FROM ORDERS O,PRODUCT P,CUSTOMERS C
+SELECT Order_id,Product_name,reservationTime,Order_many,Price,Order_number,Order_price,O.status FROM ORDERS O,PRODUCT P,CUSTOMERS C
+
 WHERE O.product_id=P.Product_id and C.Customer_id=O.customer_id and order_or_delivery=0
 and O.customer_id=1";
     $st = $pdo->prepare($query);
@@ -235,9 +236,4 @@ if($_SERVER["REQUEST_METHOD"]=="POST" ) {
         $errorLogs ="";
         return 1;
     }
-
-
 }
-
-
-

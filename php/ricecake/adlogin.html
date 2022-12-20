@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./images/favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종로떡집</title>
+    <script src="https://kit.fontawesome.com/006857925c.js" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" type="text/css" href="adlogin.css?ver=1">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+</head>
+<script>
+    function check(form){
+    if(form.userpassword.value=="0000"){
+            window.open('admin.html')
+}
+else alert("비밀번호를 확인해주세요. ");
+}
+
+function resizeApply() {
+    var minWidth = 1500;
+    var body = document.getElementsByTagName('body')[0];
+    if (window.innerWidth < minWidth) { body.style.zoom = (window.innerWidth / minWidth); }
+    else body.style.zoom = 1;
+  }
+  
+  window.onload = function() {
+    window.addEventListener('resize', function() {
+      resizeApply();
+    });
+  }
+  
+  resizeApply();
+
+  function Confirm(){
+    window.confirm("로그아웃을 하시겠습니까?");
+}
+</script>
+<body>
+    <div class="wrap">
+        <div class="intro">
+        <div class="intro_bg">
+            <div class="header">
+                <ul class="nav">
+                    <li><a href="#" onclick="location.href='login.html'">로그인</a></li>
+                    <li><a href="#" onclick="Confirm()"> 로그아웃</a></li>
+                    <li><a href="#" onclick="location.href='signin.html'">회원가입</a></li>
+                    <li><a1 href="#"onclick="location.href='adlogin.html'">관리자전용</a1></li>
+                </ul>
+            </div>
+            <div class="intro_name">
+                <a href="#" onclick="location.href='main.html'"><center>종로떡집</center></a>
+            </div>
+            <div class="intro_png">
+                <img src="./images/rainbow.png" alt="" width="100%">
+            </div>
+        </div>
+
+        <div class="menu_bar">
+            <div class="menu_bar_inside">
+                <a href="#" onclick="location.href='togo.html'">오시는길</a>
+                <a href="#" onclick="location.href='ricecake.html'">상품</a>
+                <a href="#" onclick="location.href='reserve.html'">예약조회</a>
+                <a href="#" onclick="location.href='deliver.html'">배송조회</a>
+                <a href="#" onclick="location.href='findmaterial.html'">재료찾기</a>
+
+            </div>
+            
+        </div>
+    </div>
+        <div class="container">
+            <form action="#" class="login">
+                <h2 class="title">관리자 페이지</h2>
+                <h5 class="apple">관리자 암호를 입력하세요.</h5>
+             
+                <div class="login-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="userpassword" placeholder="비밀번호" />
+                </div>
+                
+                <div class="button">
+                    <input type="button" onclick="check(this.form)" class="btn solid" value="로그인"/>
+                </div>
+    
+            </form>
+            
+        </div>
+     
+
+    
+    </div>
+</body>
+</html>
+

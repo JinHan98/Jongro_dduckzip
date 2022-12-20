@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./images/favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종로떡집</title>
+    <script src="https://kit.fontawesome.com/006857925c.js" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" type="text/css" href="deliver.css?ver=2">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="./screen.js"></script>
+</head>
+<script>
+    const list = document.createDocumentFragment();
+
+    async function getDelivery() {
+        const url = `http://localhost:8888/orders.php/selectDelivery`;
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const res = await fetch(url, options);
+        const data = await res.json();
+        if (res.ok) {
+            <!-- console.log(data) -->
+            return data;
+        } else {
+            throw Error(data);
+        }   
+    }
+
+    async function renderDelivery() {
+        let deliverylist = await getDelivery();
+
+        let html =
+        `<div class="top">
+            <div class="num">주문 번호</div>
+            <div class="order">주문 상품</div>
+            <div class="cost">금액</div>
+        </div>`;
+        for(let i = 0; i < deliverylist.deliveryList.length; i++) {
+            let delivery = deliverylist.deliveryList[i];
+
+            if(delivery.status == 'F') {
+                continue;
+            }
+
+            let htmlSegment =
+                `<div>
+                    <div class="num">
+                        <i class="fa-solid fa-caret-right"></i> <strong>주문번호:  ${delivery.Order_id}</strong>
+                    <br/><br/>
+                    <a><i class="fa-solid fa-truck-fast"></i>
+                        ${delivery.address}</a>
+                    <br/></div>
+                    <div class="order">${delivery.Product_name} ${delivery.Order_many}개</div>
+                    <div class="cost">결제금액 : ${delivery.Order_price}원</div>
+    
+                </div>`;
+
+    
+            html += htmlSegment;
+        };
+        let container = document.querySelector('.board_list');
+        container.innerHTML = html;
+    }
+</script>
+
+<body>
+    <div class="wrap">
+        <div class="intro_bg">
+            <div class="header">
+                <ul class="nav">
+                    <li><a href="#" onclick="location.href='login.html'">로그인</a></li>
+                    <li><a href="#" onclick="Confirm()"> 로그아웃</a></li>
+                    <li><a href="#" onclick="location.href='signin.html'">회원가입</a></li>
+                    <li><a1 href="#"onclick="location.href='adlogin.html'">관리자전용</a1></li>
+                </ul>
+            </div>
+            <div class="intro_name">
+                <a href="#" onclick="location.href='main.html'"><center>종로떡집</center></a>
+            </div>
+            <div class="intro_png">
+                <img src="./images/rainbow.png" alt="" width="100%">
+            </div>
+        </div>
+
+        <div class="menu_bar">
+            <div class="menu_bar_inside">
+                <a href="#" onclick="location.href='togo.html'">오시는길</a>
+                <a href="#" onclick="location.href='ricecake.html'">상품</a>
+                <a href="#" onclick="location.href='reserve.html'">예약조회</a>
+                <a1 href="#" onclick="location.href='deliver.html'">배송조회</a1>
+                <a href="#" onclick="location.href='findmaterial.html'">재료찾기</a>
+
+            </div>
+        </div>
+
+        <div class="rc">
+            <div class="rc_bar">
+                <h3>배송조회</h3>
+                <a>고객님의 배송주문을 조회합니다.</a>
+            </div>
+        </div>
+
+        <center>
+        <div class="board_wrap">
+            <div class="board_list_wrap">
+                <div class="board_list">
+                    <script>
+                        renderDelivery()
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="./images/favicon.ico" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>종로떡집</title>
+  <link rel="stylesheet" type="text/css" href="ricecakedetail.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+  <script type="text/javascript" src="./ricecakedetail.js?ver=2"></script>
+</head>
+
+<script>
+  const id = location.href.split('?')[1];
+
+async function getMenu() {
+  const url = `http://localhost:8888/product.php/product-detail?productId=` + id;
+
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const res = await fetch(url, options);
+  const data = await res.json();
+  if (res.ok) {
+      return data;
+  } else {
+      throw Error(data);
+  }   
+}
+
+async function renderMenu() {
+  let menulist = await getMenu();
+
+  let html = '';
+  for(let i = 0; i < menulist.productDetailList.length; i++) {
+      let menu = menulist.productDetailList[i];
+      
+      console.log(menu.Price);
+      console.log(menu.Product_name);
+
+      let htmlSegment = 
+      
+      `<div class="left-image"><img src="${menu.ImgUrl}" width="400px" height="400px"></div>
+        <div class="content">
+          <div class="up_content">
+            <div class="num">${menu.Product_name}</div> <div class="back_menu" onclick="location.href='ricecake.html'"><a>목록가기</a></div>
+          </div>
+          <div class="context">
+            <div class="explain">${menu.ProductDetail}
+            </div>
+            <div class="total">합계 : </div>
+            <div class="cost" id="cos">${menu.Price}원</div>
+            <div class="plus_minus_button">
+              <button class="minus" id="mi" onclick="minus(${menu.Price})">-</button>
+              <p class="many" id="ma">1</p>
+              <button class="plus" id="pl" onclick="plus(${menu.Price})">+</button>
+            </div>
+          </div>
+          <div class="button">
+            <!-- <button class="reser" onclick="alert('상품이 예약되었습니다')">상품예약</button> -->
+            <button class="reser" onclick="goReserve()">상품예약</button>
+            <button class="order" onclick="goDeliver()">배송주문</button>
+          </div>
+        </div>`;
+
+      html += htmlSegment;
+  };
+
+  let container = document.querySelector('.main');
+  container.innerHTML = html;
+}
+</script>
+
+<body>
+<div class="wrap">
+  <div class="intro_bg">
+    <div class="header">
+      <ul class="nav">
+        <li><a href="#" onclick="location.href='login.html'">로그인</a></li>
+        <li><a href="#" onclick="Confirm()"> 로그아웃</a></li>
+        <li><a href="#" onclick="location.href='signin.html'">회원가입</a></li>
+        <li><a1 href="#"onclick="location.href='admin.html'">관리자전용</a1></li>
+      </ul>
+    </div>
+    <div class="intro_name">
+      <a href="#" onclick="location.href='main.html'"><center>종로떡집</center></a>
+    </div>
+    <div class="intro_png">
+      <img src="./images/rainbow.png" alt="" width="100%">
+    </div>
+  </div>
+
+  <div class="menu_bar">
+    <div class="menu_bar_inside">
+      <a href="#" onclick="location.href='togo.html'">오시는길</a>
+      <a1 href="#" onclick="location.href='ricecake.html'">상품</a1>
+      <a href="#" onclick="location.href='reserve.html'">예약조회</a>
+      <a href="#" onclick="location.href='deliver.html'">배송조회</a>
+      <a href="#" onclick="location.href='findmaterial.html'">재료찾기</a>
+
+    </div>
+  </div>
+
+  <div class="main">
+      <script>
+        renderMenu();
+      </script>
+  </div>
+</div>
+
+</body>
+</html>

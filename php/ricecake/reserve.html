@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./images/favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종로떡집</title>
+    <script src="https://kit.fontawesome.com/006857925c.js" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" type="text/css" href="reserve.css?ver=2">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="./screen.js"></script>
+</head>
+
+<script>
+    const list = document.createDocumentFragment();
+
+        async function getReserve() {
+            const url = `http://localhost:8888/orders.php/selectReservation`;
+            const options = {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            };
+            const res = await fetch(url, options);
+            const data = await res.json();
+            if (res.ok) {
+                <!-- console.log(data) -->
+                return data;
+            } else {
+                throw Error(data);
+            }   
+        }
+
+        async function renderReserve() {
+            let reservelist = await getReserve();
+
+            let html =
+            `<div class="top">
+                <div class="num">예약 번호</div>
+                <div class="order">주문 상품</div>
+                <div class="cost">금액</div>
+            </div>`;
+            for(let i = 0; i < reservelist.reservationList.length; i++) {
+                let reserve = reservelist.reservationList[i];
+                console.log(reserve.Product_name);
+                console.log(reserve.Order_id);
+
+                if(reserve.status == 'F') {
+                    continue;
+                }    
+
+                let htmlSegment =
+                `<div>
+                    <div class="num">
+                        <i class="fa-solid fa-caret-right"></i> <strong>예약번호:  ${reserve.Order_id}</strong>
+                        <br/><br/>
+                        <a1>${reserve.reservationTime}</a1>
+                        <br/>
+                    </div>
+                    <div class="order"> ${reserve.Product_name} ${reserve.Order_many}개</div>
+                    <div class="cost">결제금액 : ${reserve.Order_price}원</div>
+                </div>`;
+        
+                html += htmlSegment;
+            };
+            let container = document.querySelector('.board_list');
+            container.innerHTML = html;
+        }
+</script>
+
+<body>
+    <div class="wrap">
+        <div class="intro_bg">
+            <div class="header">
+                <ul class="nav">
+                    <li><a href="#" onclick="location.href='login.html'">로그인</a></li>
+                    <li><a href="#" onclick="Confirm()"> 로그아웃</a></li>
+                    <li><a href="#" onclick="location.href='signin.html'">회원가입</a></li>
+                    <li><a1 href="#"onclick="location.href='adlogin.html'">관리자전용</a1></li>
+                </ul>
+            </div>
+            <div class="intro_name">
+                <a href="#" onclick="location.href='main.html'"><center>종로떡집</center></a>
+            </div>
+            <div class="intro_png">
+                <img src="./images/rainbow.png" alt="" width="100%">
+            </div>
+        </div>
+
+        <div class="menu_bar">
+            <div class="menu_bar_inside">
+                <a href="#" onclick="location.href='togo.html'">오시는길</a>
+                <a href="#" onclick="location.href='ricecake.html'">상품</a>
+                <a1 href="#" onclick="location.href='reserve.html'">예약조회</a1>
+                <a href="#" onclick="location.href='deliver.html'">배송조회</a>
+                <a href="#" onclick="location.href='findmaterial.html'">재료찾기</a>
+
+            </div>
+        </div>
+
+        <div class="rc">
+            <div class="rc_bar">
+                <h3>예약조회</h3>
+                <a>고객님의 예약을 조회합니다.</a>
+                <a1>예약취소는 전화로만 가능합니다.</a1>
+            </div>
+        </div>
+
+        <center>
+        <div class="board_wrap">
+            <div class="board_list_wrap">
+                <div class="board_list">
+                    <script>
+                        renderReserve();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

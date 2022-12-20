@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종로떡집</title>
+    <link rel="stylesheet" type="text/css" href="signin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="./signin.js"></script>
+</head>
+
+
+<body>
+    <div class="wrap">
+        <div class="intro_bg">
+            <div class="header">
+                <ul class="nav">
+                    <li><a href="#" onclick="location.href='login.html'">로그인</a></li>
+                    <li><a href="#" onclick="location.href='logout.html'"> 로그아웃</a></li>
+                    <li><a href="#" onclick="location.href='signin.html'">회원가입</a></li>
+                    <li><a1 href="#"onclick="location.href='admin.html'">관리자전용</a1></li>
+                </ul>
+            </div>
+            <div class="intro_name">
+                <a href="#" onclick="location.href='main.html'"><center>종로떡집</center></a>
+            </div>
+            <div class="intro_png">
+                <img src="./images/rainbow.png" alt="">
+            </div>
+        </div>
+
+        <div class="menu_bar">
+            <div class="menu_bar_inside">
+                <a href="#" onclick="location.href='togo.html'">오시는길</a>
+                <a href="#" onclick="location.href='ricecake.html'">상품</a>
+                <a href="#" onclick="location.href='reserve.html'">예약조회</a>
+                <a href="#" onclick="location.href='deliver.html'">배송조회</a>
+            </div>
+        </div>
+   
+        <form onsubmit="return Check()" method="post" action="" enctype="text/plain" >
+        <div class="container">
+            <div class="container-top">
+                <h1 class="signin">SIGN IN</h1>
+            </div>
+
+            <div class="name">
+                <p class="nameonly">성함</p>
+                <input class="namefield" type="text" AUTOCOMPLETE="off" name ="UserName" id="names" >
+            </div>
+
+            <div class="phone">
+                <p class="phoneonly">휴대폰번호</p>
+                <input class="phonefield" type="text" AUTOCOMPLETE="off" name = "IDphone" id="IDphone">
+            </div>
+
+            <div class="id">
+                <p class="idonly">아이디-
+                    <p1>휴대폰번호를 재입력 해주십시오.</p1></p>
+                <input class="idfield" type="text" AUTOCOMPLETE="off" name = "Id" id="ID">
+            </div>
+
+            <div class="pw">
+                <p class="pwonly">비밀번호</p>
+                <input class="pwfield" type="password" AUTOCOMPLETE="off" name ="password" id="pass">
+            </div>
+
+            <div class="pwch">
+                <p class="pwchonly">비밀번호 확인</p>
+                <input class="pwchfield" type="password"  AUTOCOMPLETE="off" name ="passwordCheck" id="passch">
+            </div>
+
+            <center><input button class="gosignin" type="submit" value="회원가입" 
+                style="padding: 5px 30px;"></center>
+            
+
+        </div>
+
+    </form>
+
+</div>
+</body>
+
+</html>
