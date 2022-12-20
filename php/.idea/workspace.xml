@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8ec1afd-dfea-4579-854b-4f5db655261b" name="Default Changelist" comment="commit">
+    <list default="true" id="c8ec1afd-dfea-4579-854b-4f5db655261b" name="Default Changelist" comment="-">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/orders.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/user.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +29,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
@@ -52,12 +54,17 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1oY85hmIc8KBROHFEDZX4yl53HN" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ChangesTree.GroupingKeys" value="module" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -70,6 +77,12 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
@@ -97,7 +110,15 @@
       <workItem from="1613658227292" duration="90000" />
       <workItem from="1625800013220" duration="1999000" />
       <workItem from="1669216775560" duration="2019000" />
-      <workItem from="1669252314637" duration="598000" />
+      <workItem from="1669252314637" duration="1196000" />
+      <workItem from="1669679002296" duration="12460000" />
+      <workItem from="1669981544234" duration="5488000" />
+      <workItem from="1670426320232" duration="18865000" />
+      <workItem from="1670592035844" duration="1154000" />
+      <workItem from="1671410147578" duration="5522000" />
+      <workItem from="1671446030996" duration="9134000" />
+      <workItem from="1671497110234" duration="184000" />
+      <workItem from="1671498203606" duration="1864000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1669216936135</created>
@@ -113,7 +134,49 @@
       <option name="project" value="LOCAL" />
       <updated>1669216996558</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="회원가입">
+      <created>1669711455870</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1669711455870</updated>
+    </task>
+    <task id="LOCAL-00004" summary="회원가입">
+      <created>1669723748614</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1669723748615</updated>
+    </task>
+    <task id="LOCAL-00005" summary="상품 도메인">
+      <created>1669984730211</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1669984730211</updated>
+    </task>
+    <task id="LOCAL-00006" summary="예약 도메인">
+      <created>1669986842716</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669986842717</updated>
+    </task>
+    <task id="LOCAL-00007" summary="예약">
+      <created>1670461961988</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1670461961988</updated>
+    </task>
+    <task id="LOCAL-00008" summary="-">
+      <created>1670592205602</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1670592205603</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,7 +194,13 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="회원가입" />
+    <MESSAGE value="상품 도메인" />
+    <MESSAGE value="예약 도메인" />
+    <MESSAGE value="예약" />
+    <MESSAGE value="-" />
+    <option name="LAST_COMMIT_MESSAGE" value="-" />
   </component>
 </project>

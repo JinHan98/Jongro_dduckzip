@@ -15,5 +15,12 @@
       <jdbc-url>jdbc:mysql://jonro-db.cxmaycbc3ozq.ap-northeast-2.rds.amazonaws.com:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="jonro@jonro-db.cxmaycbc3ozq.ap-northeast-2.rds.amazonaws.com" uuid="cc02517a-a29c-4286-b710-166afb3369cb">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://jonro-db.cxmaycbc3ozq.ap-northeast-2.rds.amazonaws.com:3306/jonro</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
